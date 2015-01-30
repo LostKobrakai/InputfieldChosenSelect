@@ -1,3 +1,103 @@
+(function($) {
+	// From Github:
+	// https://github.com/mrhenry/jquery-chosen-sortable
+
+  $.fn.chosenOrder = function() {
+    var $this   = this.first(),
+        $chosen = $this.siblings('.chosen-container');
+
+    return $($chosen.find('.chosen-choices li[class!="search-field"]').map( function() {
+      if (!this) {
+        return undefined;
+      }
+      return $this.find('option:contains(' + $(this).text() + ')')[0];
+    }));
+  };
+
+  $.fn.chosenSortable = function(){
+    var $this = this;
+
+    $this.each(function(){
+      var $select = $(this);
+      var $chosen = $select.siblings('.chosen-container');
+
+      $chosen.find('.chosen-choices').bind('mousedown', function(event){
+        if ($(event.target).is('span')) {
+          event.stopPropagation();
+        }
+      });
+
+      $chosen.find('.chosen-choices').sortable({
+        'placeholder' : 'ui-state-highlight',
+        'items'       : 'li:not(.search-field)',
+        //'update'      : _update,
+        'tolerance'   : 'pointer'
+      });
+
+      $select.closest('form').one('submit.sortable', function(){
+        var $options = $select.chosenOrder();
+        $options.detach().appendTo($select);
+      });
+
+    });
+
+    return this;
+  };
+
+  // Updated version of this:
+  // http://stackoverflow.com/questions/7385246/allow-new-values-with-chosen-js-multiple-select/12961228#12961228
+  
+  $.fn.chosenAddable = function(){
+  	var $select = this,
+  			$chosen = $select.siblings('.chosen-container');
+
+  	$chosen.on("keydown", function(event){
+  		var stroke, _ref, target, list;
+			// get keycode
+			stroke = (_ref = event.which) != null ? _ref : event.keyCode;
+			target = $(event.target);
+
+			if (stroke === 9 || stroke === 13) {
+				var value;
+				// Get current Tags
+				list = $select.find('option').map(function () { 
+					return $(this).text(); 
+				}).get();
+
+				value = $.trim(target.val());
+
+				if($.inArray(value,list) === -1) {
+					$('<option>')
+						.text(value).val(value)
+						.attr('selected','selected')
+						.attr("rel", "add")
+						.appendTo($select);
+
+					$select.trigger('chosen:updated');
+				}
+
+				return false;
+			}
+
+			$select.closest('form').one('submit.addable', function(){
+				$(this).off("submit.addable");
+        var options = $select.children("[rel='add']").detach().map(function () { 
+					return $(this).text(); 
+				}).get();
+
+        if(options.length){
+					// fieldname, remove "Inputfield_" in front of id
+					fieldName = $select.attr("id").substring(11);
+					$textarea = $('#_'+fieldName+'_add_items').val(options.join("\n"));
+				}
+      });
+
+			return this;
+  	});
+  }
+
+}(jQuery));
+
 $(document).ready(function() {
 	$(".InputfieldChosenSelect select[multiple=multiple]").each(function() {
 		var $t = $(this); 
@@ -7,6 +107,6 @@ $(document).ready(function() {
 		} else {
 			var options = config[$t.attr('id')]; 
 		}
-		$t.chosen(options); 
+		$t.chosen(options).chosenSortable().chosenAddable(); 
 	}); 
 }); 

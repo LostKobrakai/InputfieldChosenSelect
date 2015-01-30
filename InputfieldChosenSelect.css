@@ -1,0 +1,34 @@
+.chosen-container {
+  font-size: 13px;
+  position: relative;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+.chosen-container .chosen-drop {
+  background: #fff;
+  border: 1px solid #aaa;
+  border-top: 0;
+  position: absolute;
+  top: 29px;
+  left: 0;
+  -webkit-box-shadow: 0 4px 5px rgba(0,0,0,.15);
+  -moz-box-shadow   : 0 4px 5px rgba(0,0,0,.15);
+  -o-box-shadow     : 0 4px 5px rgba(0,0,0,.15);
+  box-shadow        : 0 4px 5px rgba(0,0,0,.15);
+  z-index: 999;
+}
+
+.ui-state-highlight.ui-state-highlight  {
+  top: 0;
+  background: rgb(240,240,240);
+  margin: 3px 5px 3px 0;
+  padding: 0;
+  border: 1px dotted gray;
+  width: 100px;
+  height: 19px;
+}
+
+.InputfieldPageAdd{
+  display: none;
+}

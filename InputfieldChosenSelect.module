@@ -48,6 +48,15 @@ class InputfieldChosenSelect extends InputfieldSelectMultiple implements Inputfi
 		$this->config->scripts->add($this->config->urls->$class . "chosen/chosen.jquery.min.js?v=$ver");
 		$this->config->styles->add($this->config->urls->$class . "chosen/chosen.min.css?v=$ver");
 
+		$selectedOptions = $this->attr('value');
+
+		foreach($selectedOptions as $id) {
+			if(!isset($this->options[$id])) continue; 
+			$label = $this->options[$id]; 
+			unset($this->options[$id]); 	
+			$this->addOption($id, $label); 
+		}
+
 		$this->config->js($this->id, $this->chosenOptions);
 
 		return parent::___render();
