@@ -6,6 +6,11 @@ A Inputfield to provide a tagging interface for FieldtypePage.
 
 Chosen Library: [http://harvesthq.github.io/chosen/](http://harvesthq.github.io/chosen/)
 
+## Features
+
+- Inline adding of new tabs, which will then generate the corresponding pages.
+- Sortable tags.
+
 ## Usage
 
 - Install the Module
