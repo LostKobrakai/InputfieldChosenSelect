@@ -15,6 +15,8 @@ Chosen Library: [http://harvesthq.github.io/chosen/](http://harvesthq.github.io/
 
 - Install the Module
 - Edit your pagefield and choose `InputfieldChosenSelect` as inputfield.
+- Use `TAB` to create new Pages with the currently typed name.
+- `Enter` will fill in the tab currently selected in the dropdown.
 
 ## Uninstall
 
