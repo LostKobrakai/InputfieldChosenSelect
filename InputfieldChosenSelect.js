@@ -61,10 +61,10 @@
 				var value;
 				// Get current Tags
 				list = $select.find('option').map(function () { 
-					return $(this).text(); 
+					return $(this).text().toLowerCase(); 
 				}).get();
 
-				value = $.trim(target.val());
+				value = $.trim(target.val()).toLowerCase();
 
 				if($.inArray(value,list) === -1) {
 					$('<option>')
