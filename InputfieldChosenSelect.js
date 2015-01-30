@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$(".InputfieldPageTags select[multiple=multiple]").each(function() {
+	$(".InputfieldChosenSelect select[multiple=multiple]").each(function() {
 		var $t = $(this); 
 
 		if(typeof config === 'undefined') {
