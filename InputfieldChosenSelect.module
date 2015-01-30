@@ -1,14 +1,16 @@
 <?php
 
 /**
- * ProcessWire Page List Select Multiple Inputfield module
+ * InputfieldChosenSelect module
  *
- * A Page List Selector for selecting multiple pages
+ * Inputfield for the ProcessWire FieldtypePage. Provides an alternative
+ * tagging interface.
  *
- * ProcessWire 2.x 
- * Copyright (C) 2010 by Ryan Cramer 
- * Licensed under GNU/GPL v2, see LICENSE.TXT
+ * Copyright (C) 2015 Benjamin Milde
+ * Licensed under MIT License, see LICENSE.md
  * 
+ * http://www.kobrakai.de
+ *
  * http://www.processwire.com
  * http://www.ryancramer.com
  *
@@ -20,8 +22,8 @@ class InputfieldChosenSelect extends InputfieldSelectMultiple implements Inputfi
 
 	public static function getModuleInfo() {
 		return array(
-			'title' => __('Chosen Select', __FILE__), // Module Title
-			'summary' => __('Selection of multiple pages from a ProcessWire page tree list', __FILE__), // Module Summary
+			'title' => __('InputfieldChosenSelect', __FILE__), // Module Title
+			'summary' => __('Inputfield for the ProcessWire FieldtypePage. Provides an alternative tagging interface.', __FILE__), // Module Summary
 			'version' => 100, 
 			);
 	}
