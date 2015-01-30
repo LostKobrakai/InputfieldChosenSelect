@@ -34,6 +34,7 @@ class InputfieldChosenSelect extends InputfieldSelectMultiple implements Inputfi
 		wire('modules')->get('JqueryUI');
 
 		$this->setChosenOption('width', "100%");
+		$this->setChosenOption('search_contains', 'true');
 	}
 
 	public function setChosenOption($key, $value) {

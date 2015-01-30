@@ -46,7 +46,7 @@
 
   // Updated version of this:
   // http://stackoverflow.com/questions/7385246/allow-new-values-with-chosen-js-multiple-select/12961228#12961228
-  
+
   $.fn.chosenAddable = function(){
   	var $select = this,
   			$chosen = $select.siblings('.chosen-container');
@@ -57,7 +57,7 @@
 			stroke = (_ref = event.which) != null ? _ref : event.keyCode;
 			target = $(event.target);
 
-			if (stroke === 9 || stroke === 13) {
+			if (stroke === 9) {
 				var value;
 				// Get current Tags
 				list = $select.find('option').map(function () { 
