@@ -64,9 +64,9 @@
 					return $(this).text().toLowerCase(); 
 				}).get();
 
-				value = $.trim(target.val()).toLowerCase();
+				value = $.trim(target.val());
 
-				if($.inArray(value,list) === -1) {
+				if($.inArray(value.toLowerCase(),list) === -1) {
 					$('<option>')
 						.text(value).val(value)
 						.attr('selected','selected')
