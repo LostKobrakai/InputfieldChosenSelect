@@ -51,8 +51,6 @@
   	var $select = this,
   			$chosen = $select.siblings('.chosen-container');
 
-    console.log($select.data('chosen').results_data);
-
     function moveNewPagesToInputfield(){
       $(this).off("submit.addable");
       var options = $select.children("[rel='add']").detach().map(function () { 

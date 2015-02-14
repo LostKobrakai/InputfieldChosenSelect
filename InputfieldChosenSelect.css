@@ -1,5 +1,5 @@
 .chosen-container {
-  font-size: 13px;
+  font-size: 16px;
   position: relative;
   display: inline-block;
   zoom: 1;
@@ -32,3 +32,4 @@
 .InputfieldPageAdd{
   display: none;
 }
+

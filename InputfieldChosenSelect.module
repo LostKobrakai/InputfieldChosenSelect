@@ -49,6 +49,11 @@ class InputfieldChosenSelect extends InputfieldSelectMultiple implements Inputfi
 		$this->config->scripts->add($this->config->urls->$class . "chosen/chosen.jquery.min.js?v=$ver");
 		$this->config->styles->add($this->config->urls->$class . "chosen/chosen.min.css?v=$ver");
 
+		// Special styles per admin theme
+		if($this->adminTheme == "AdminThemeReno"){
+			$this->config->styles->add($this->config->urls->$class . "AdminThemeReno.css?v=$ver");
+		}
+
 		$selectedOptions = $this->attr('value');
 
 		foreach($selectedOptions as $id) {
