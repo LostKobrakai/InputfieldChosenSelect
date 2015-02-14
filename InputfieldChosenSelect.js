@@ -51,49 +51,61 @@
   	var $select = this,
   			$chosen = $select.siblings('.chosen-container');
 
-  	$chosen.on("keydown", function(event){
-  		var stroke, _ref, target, list;
-			// get keycode
-			stroke = (_ref = event.which) != null ? _ref : event.keyCode;
-			target = $(event.target);
+    console.log($select.data('chosen').results_data);
 
-			if (stroke === 9) {
-				var value;
-				// Get current Tags
-				list = $select.find('option').map(function () { 
-					return $(this).text().toLowerCase(); 
-				}).get();
+    function moveNewPagesToInputfield(){
+      $(this).off("submit.addable");
+      var options = $select.children("[rel='add']").detach().map(function () { 
+        return $(this).text(); 
+      }).get();
 
-				value = $.trim(target.val());
+      if(options.length){
+        // fieldname, remove "Inputfield_" in front of id
+        fieldName = $select.attr("id").substring(11);
+        $textarea = $('#_'+fieldName+'_add_items').val(options.join("\n"));
+      }
+    }
 
-				if($.inArray(value.toLowerCase(),list) === -1) {
-					$('<option>')
-						.text(value).val(value)
-						.attr('selected','selected')
-						.attr("rel", "add")
-						.appendTo($select);
+    function trackNoResultEntries(event){
+      var stroke, _ref, target, list;
+      // get keycode
+      stroke = (_ref = event.which) != null ? _ref : event.keyCode;
+      target = $(event.target);
 
-					$select.trigger('chosen:updated');
-				}
+      if (stroke === 9 || stroke === 13 ) {
+        var value;
+        // Get current Tags
+        list = $select.data('chosen').results_data.map(function(ele){
+          if(ele.text !== undefined) text = ele.text.toLowerCase();
+          else text = "";
+          return text;
+        });
 
-				return false;
-			}
+        value = $.trim(target.val());
 
-			$select.closest('form').one('submit.addable', function(){
-				$(this).off("submit.addable");
-        var options = $select.children("[rel='add']").detach().map(function () { 
-					return $(this).text(); 
-				}).get();
+        if(list.indexOf(value.toLowerCase()) === -1) {
+          event.stopImmediatePropagation();
+          event.stopPropagation();
+          event.preventDefault();
 
-        if(options.length){
-					// fieldname, remove "Inputfield_" in front of id
-					fieldName = $select.attr("id").substring(11);
-					$textarea = $('#_'+fieldName+'_add_items').val(options.join("\n"));
-				}
-      });
+          $('<option>')
+            .text(value).val(value)
+            .attr('selected','selected')
+            .attr("rel", "add")
+            .appendTo($select);
 
-			return this;
-  	});
+          setTimeout(function(){ $select.trigger('chosen:updated')}, 10);
+          return false;
+        }
+      }
+
+      $select.closest('form').one('submit.addable', moveNewPagesToInputfield);
+
+      return this;
+    }
+
+    $chosen.on("keyup cut paste focus", trackNoResultEntries);
+  	
   }
 
 }(jQuery));
