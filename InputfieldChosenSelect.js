@@ -118,5 +118,8 @@ $(document).ready(function() {
 			var options = config[$t.attr('id')]; 
 		}
 		$t.chosen(options).chosenSortable().chosenAddable(); 
+    if(!$t.data('chosen')){
+      $t.closest(".InputfieldChosenSelect").find(".InputfieldPageAdd").css("display", "block");
+    }
 	}); 
 }); 

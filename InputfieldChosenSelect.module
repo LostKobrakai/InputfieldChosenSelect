@@ -24,7 +24,7 @@ class InputfieldChosenSelect extends InputfieldSelectMultiple implements Inputfi
 		return array(
 			'title' => __('Inputfield Chosen Select', __FILE__), // Module Title
 			'summary' => __('Inputfield for the ProcessWire FieldtypePage. Provides an alternative tagging interface.', __FILE__), // Module Summary
-			'version' => 113, 
+			'version' => 114, 
 			);
 	}
 
