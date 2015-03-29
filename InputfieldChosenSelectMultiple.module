@@ -53,6 +53,8 @@ class InputfieldChosenSelectMultiple extends InputfieldSelectMultiple implements
 		if($this->adminTheme == "AdminThemeReno"){
 			$this->config->styles->add($this->config->urls->$class . "AdminThemeReno.css?v=$ver");
 		}
+		
+		if($this->placeholder) $this->setChosenOption('placeholder_text_multiple', $this->placeholder);
 
 		$selectedOptions = $this->attr('value');
 
@@ -91,6 +93,20 @@ class InputfieldChosenSelectMultiple extends InputfieldSelectMultiple implements
 
 			$this->modules->saveModuleConfigData("InputfieldPage", $data);
 		}
+	}
+
+	public function ___getConfigInputfields() {
+
+		$inputfields = parent::___getConfigInputfields();
+
+		$f = wire('modules')->get('InputfieldText');
+		$f->attr('name', 'placeholder');
+		$f->attr('value', $this->placeholder);
+		$f->label = $this->_('Placeholder Text');
+		$f->description = $this->_('Placeholder-text to be displayed in empty field.'); 
+		$inputfields->add($f);
+
+		return $inputfields;
 	}
 	
 }

@@ -56,6 +56,7 @@ class InputfieldChosenSelect extends InputfieldSelect {
 
 
 		if(!$this->required) $this->setChosenOption('allow_single_deselect', 'true');
+		if($this->placeholder) $this->setChosenOption('placeholder_text_single', $this->placeholder);
 
 		$this->config->js($this->id, $this->chosenOptions);
 
@@ -85,6 +86,20 @@ class InputfieldChosenSelect extends InputfieldSelect {
 
 			$this->modules->saveModuleConfigData("InputfieldPage", $data);
 		}
+	}
+
+	public function ___getConfigInputfields() {
+
+		$inputfields = parent::___getConfigInputfields();
+
+		$f = wire('modules')->get('InputfieldText');
+		$f->attr('name', 'placeholder');
+		$f->attr('value', $this->placeholder);
+		$f->label = $this->_('Placeholder Text');
+		$f->description = $this->_('Placeholder-text to be displayed in empty field.'); 
+		$inputfields->add($f);
+
+		return $inputfields;
 	}
 	
 }
