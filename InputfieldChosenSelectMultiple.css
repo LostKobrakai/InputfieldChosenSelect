@@ -1,11 +1,12 @@
-.chosen-container {
+/*.InputfieldChosenSelectMultiple .chosen-container {
   font-size: 16px;
   position: relative;
   display: inline-block;
   zoom: 1;
   *display: inline;
 }
-.chosen-container .chosen-drop {
+
+.InputfieldChosenSelectMultiple .chosen-container .chosen-drop {
   background: #fff;
   border: 1px solid #aaa;
   border-top: 0;
@@ -19,7 +20,7 @@
   z-index: 999;
 }
 
-.ui-state-highlight.ui-state-highlight  {
+.InputfieldChosenSelectMultiple .ui-state-highlight.ui-state-highlight  {
   top: 0;
   background: rgb(240,240,240);
   margin: 3px 5px 3px 0;
@@ -29,7 +30,8 @@
   height: 19px;
 }
 
-.InputfieldPageAdd{
+*/
+
+.InputfieldChosenSelectMultiple .InputfieldPageAdd{
   display: none;
 }
-

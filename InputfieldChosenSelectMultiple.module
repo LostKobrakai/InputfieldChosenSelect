@@ -3,8 +3,8 @@
 /**
  * InputfieldChosenSelect module
  *
- * Inputfield for the ProcessWire FieldtypePage. Progressively enhanced single
- * value select.
+ * Inputfield for the ProcessWire FieldtypePage. Provides an alternative
+ * tagging interface.
  *
  * Copyright (C) 2015 Benjamin Milde
  * Licensed under MIT License, see LICENSE.md
@@ -16,14 +16,14 @@
  *
  */
 
-class InputfieldChosenSelect extends InputfieldSelect {
+class InputfieldChosenSelectMultiple extends InputfieldSelectMultiple implements InputfieldHasArrayValue{
 
 	protected $chosenOptions = array();
 
 	public static function getModuleInfo() {
 		return array(
-			'title' => __('Inputfield Chosen Select', __FILE__), // Module Title
-			'summary' => __('Inputfield for the ProcessWire FieldtypePage. Progressively enhanced single value select.', __FILE__), // Module Summary
+			'title' => __('Inputfield Chosen Select Multiple', __FILE__), // Module Title
+			'summary' => __('Inputfield for the ProcessWire FieldtypePage. Provides an alternative tagging interface.', __FILE__), // Module Summary
 			'version' => 114, 
 			);
 	}
@@ -54,8 +54,14 @@ class InputfieldChosenSelect extends InputfieldSelect {
 			$this->config->styles->add($this->config->urls->$class . "AdminThemeReno.css?v=$ver");
 		}
 
+		$selectedOptions = $this->attr('value');
 
-		if(!$this->required) $this->setChosenOption('allow_single_deselect', 'true');
+		foreach($selectedOptions as $id) {
+			if(!isset($this->options[$id])) continue; 
+			$label = $this->options[$id]; 
+			unset($this->options[$id]); 	
+			$this->addOption($id, $label); 
+		}
 
 		$this->config->js($this->id, $this->chosenOptions);
 
