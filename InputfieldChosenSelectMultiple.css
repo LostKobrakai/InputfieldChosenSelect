@@ -1,36 +1,17 @@
-/*.InputfieldChosenSelectMultiple .chosen-container {
-  font-size: 16px;
-  position: relative;
+.ui-state-highlight.ui-state-highlight  {
   display: inline-block;
-  zoom: 1;
-  *display: inline;
-}
-
-.InputfieldChosenSelectMultiple .chosen-container .chosen-drop {
-  background: #fff;
-  border: 1px solid #aaa;
-  border-top: 0;
-  position: absolute;
-  top: 29px;
-  left: 0;
-  -webkit-box-shadow: 0 4px 5px rgba(0,0,0,.15);
-  -moz-box-shadow   : 0 4px 5px rgba(0,0,0,.15);
-  -o-box-shadow     : 0 4px 5px rgba(0,0,0,.15);
-  box-shadow        : 0 4px 5px rgba(0,0,0,.15);
-  z-index: 999;
-}
-
-.InputfieldChosenSelectMultiple .ui-state-highlight.ui-state-highlight  {
   top: 0;
-  background: rgb(240,240,240);
   margin: 3px 5px 3px 0;
   padding: 0;
-  border: 1px dotted gray;
   width: 100px;
-  height: 19px;
+  padding: 6px 24px 6px 10px;
+  line-height: 13px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  background-image: none;
+  border-radius: 3px;
+  height: 27px;
 }
-
-*/
 
 .InputfieldChosenSelectMultiple .InputfieldPageAdd{
   display: none;
