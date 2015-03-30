@@ -28,7 +28,7 @@
       });
 
       $chosen.find('.chosen-choices').sortable({
-        'placeholder' : 'ui-state-highlight',
+        'placeholder' : 'ui-state-highlight chosen-ghost',
         'items'       : 'li:not(.search-field)',
         //'update'      : _update,
         'tolerance'   : 'pointer'
