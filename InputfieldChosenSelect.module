@@ -19,12 +19,16 @@
 class InputfieldChosenSelect extends InputfieldSelect {
 
 	protected $chosenOptions = array();
+	protected $supportedAdminThemes = array(
+		"AdminThemeReno", 
+		"AdminThemeDefault"
+	);
 
 	public static function getModuleInfo() {
 		return array(
 			'title' => __('Inputfield Chosen Select', __FILE__), // Module Title
 			'summary' => __('Inputfield for the ProcessWire FieldtypePage. Progressively enhanced single value select. IMPORTANT: Please note the change in the naming of the Inputfield', __FILE__), // Module Summary
-			'version' => 116, 
+			'version' => 117, 
 			);
 	}
 
@@ -40,7 +44,7 @@ class InputfieldChosenSelect extends InputfieldSelect {
 		$pagefields = $this->fields->find("type=FieldtypePage");
 		foreach($pagefields as $pagefield){
 			if($pagefield->derefAsPage == 0 && $pagefield->inputfield === "InputfieldChosenSelect"){
-				$this->warning("The module has been updated to incorporate a single-select Inputfield, which lead to a change to the previous Inputfield's name. You seem to still have fields with the old Inputfield selected. These will now show single selects, so please change them.");
+				$this->warning("The module has been updated to incorporate a single-select Inputfield, which led to a change to the previous Inputfield's name. You seem to still have fields with the old Inputfield selected. These will now show single selects, so please change them.");
 				break;
 			}
 		}
@@ -64,10 +68,9 @@ class InputfieldChosenSelect extends InputfieldSelect {
 		$this->config->styles->add($this->config->urls->$class . "chosen/chosen.min.css?v=$ver");
 
 		// Special styles per admin theme
-		if($this->adminTheme == "AdminThemeReno"){
-			$this->config->styles->add($this->config->urls->$class . "AdminThemeReno.css?v=$ver");
+		if(in_array($this->adminTheme, $this->supportedAdminThemes)){
+			$this->config->styles->add($this->config->urls->$class . $this->adminTheme . ".css?v=$ver");
 		}
-
 
 		if(!$this->required) $this->setChosenOption('allow_single_deselect', 'true');
 		if($this->placeholder) $this->setChosenOption('placeholder_text_single', $this->placeholder);

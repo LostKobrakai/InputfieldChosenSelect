@@ -19,12 +19,16 @@
 class InputfieldChosenSelectMultiple extends InputfieldSelectMultiple implements InputfieldHasArrayValue{
 
 	protected $chosenOptions = array();
+	protected $supportedAdminThemes = array(
+		"AdminThemeReno", 
+		"AdminThemeDefault"
+	);
 
 	public static function getModuleInfo() {
 		return array(
 			'title' => __('Inputfield Chosen Select Multiple', __FILE__), // Module Title
 			'summary' => __('Inputfield for the ProcessWire FieldtypePage. Provides an alternative tagging interface.', __FILE__), // Module Summary
-			'version' => 115, 
+			'version' => 116, 
 			);
 	}
 
@@ -50,8 +54,8 @@ class InputfieldChosenSelectMultiple extends InputfieldSelectMultiple implements
 		$this->config->styles->add($this->config->urls->$class . "chosen/chosen.min.css?v=$ver");
 
 		// Special styles per admin theme
-		if($this->adminTheme == "AdminThemeReno"){
-			$this->config->styles->add($this->config->urls->$class . "AdminThemeReno.css?v=$ver");
+		if(in_array($this->adminTheme, $this->supportedAdminThemes)){
+			$this->config->styles->add($this->config->urls->$class . $this->adminTheme . ".css?v=$ver");
 		}
 		
 		if($this->placeholder) $this->setChosenOption('placeholder_text_multiple', $this->placeholder);
