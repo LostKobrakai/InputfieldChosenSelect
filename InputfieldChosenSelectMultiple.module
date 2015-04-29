@@ -28,7 +28,7 @@ class InputfieldChosenSelectMultiple extends InputfieldSelectMultiple implements
 		return array(
 			'title' => __('Inputfield Chosen Select Multiple', __FILE__), // Module Title
 			'summary' => __('Inputfield for the ProcessWire FieldtypePage. Provides an alternative tagging interface.', __FILE__), // Module Summary
-			'version' => 116, 
+			'version' => 117, 
 			);
 	}
 
@@ -39,6 +39,7 @@ class InputfieldChosenSelectMultiple extends InputfieldSelectMultiple implements
 
 		$this->setChosenOption('width', "100%");
 		$this->setChosenOption('search_contains', 'true');
+		$this->setChosenOption('no_results_text_addable', "No results match! Create");
 	}
 
 	public function setChosenOption($key, $value) {

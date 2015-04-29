@@ -28,7 +28,7 @@ class InputfieldChosenSelect extends InputfieldSelect {
 		return array(
 			'title' => __('Inputfield Chosen Select', __FILE__), // Module Title
 			'summary' => __('Inputfield for the ProcessWire FieldtypePage. Progressively enhanced single value select. IMPORTANT: Please note the change in the naming of the Inputfield', __FILE__), // Module Summary
-			'version' => 117, 
+			'version' => 118, 
 			);
 	}
 

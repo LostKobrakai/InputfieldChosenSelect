@@ -110,16 +110,24 @@
 
 $(document).ready(function() {
 	$(".InputfieldChosenSelectMultiple select[multiple=multiple]").each(function() {
-		var $t = $(this); 
+		var $t = $(this),
+        $addable = $t.closest(".InputfieldChosenSelectMultiple").find(".InputfieldPageAdd"); 
 
 		if(typeof config === 'undefined') {
 			var options = { sortable: true };
 		} else {
 			var options = config[$t.attr('id')]; 
 		}
-		$t.chosen(options).chosenSortable().chosenAddable(); 
-    if(!$t.data('chosen')){
-      $t.closest(".InputfieldChosenSelectMultiple").find(".InputfieldPageAdd").css("display", "block");
+
+    if($addable.length){
+      options["no_results_text"] = options["no_results_text_addable"];
+      $t.chosen(options).chosenSortable().chosenAddable();
+
+      if($t.data('chosen')){
+        $addable.css("display", "block");
+      }
+    }else{
+      $t.chosen(options).chosenSortable();
     }
 	}); 
 }); 
