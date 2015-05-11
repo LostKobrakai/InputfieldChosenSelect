@@ -123,7 +123,6 @@ $(document).ready(function() {
       options["no_results_text"] = options["no_results_text_addable"];
       $t.chosen(options).chosenSortable().chosenAddable();
 
-      console.log($t.data('chosen'));
       if(!$t.data('chosen')){
         $addable.css("display", "block");
       }
