@@ -28,7 +28,7 @@ class InputfieldChosenSelect extends InputfieldSelect {
 		return array(
 			'title' => __('Inputfield Chosen Select', __FILE__), // Module Title
 			'summary' => __('Inputfield for the ProcessWire FieldtypePage. Progressively enhanced single value select. IMPORTANT: Please note the change in the naming of the Inputfield', __FILE__), // Module Summary
-			'version' => 121, 
+			'version' => 122, 
 			);
 	}
 
@@ -44,7 +44,7 @@ class InputfieldChosenSelect extends InputfieldSelect {
 		$pagefields = $this->fields->find("type=FieldtypePage");
 		foreach($pagefields as $pagefield){
 			if($pagefield->derefAsPage == 0 && $pagefield->inputfield === "InputfieldChosenSelect"){
-				$this->warning("The module has been updated to incorporate a single-select Inputfield, which led to a change to the previous Inputfield's name. You seem to still have fields with the old Inputfield selected. These will now show single selects, so please change them.");
+				$this->warning("The module has been updated to incorporate a single-select Inputfield, which led to a change to the previous Inputfield's name. You seem to still have fields with the old Inputfield selected. These will now show single selects, so please change them. Please make sure InputfieldChosenSelectMultiple is even installed, too.");
 				break;
 			}
 		}
