@@ -50,7 +50,7 @@ class InputfieldChosenSelect extends InputfieldSelect {
 		}
 		foreach($pagefields as $pagefield){
 			if($pagefield->derefAsPage == 0 && $pagefield->inputfield === "InputfieldChosenSelect"){
-				$this->warning("Please update <a href='/admin/setup/field/edit?id={$pagefield->id}#InputfieldWrapper12'>{$pagefield->name}</a> to use InputfieldChosenSelectMultiple.", Notice::allowMarkup);
+				$this->warning("Please update <a href='{$this->config->urls->admin}setup/field/edit?id={$pagefield->id}#InputfieldWrapper12'>{$pagefield->name}</a> to use InputfieldChosenSelectMultiple.", Notice::allowMarkup);
 			}
 		}
 	}
