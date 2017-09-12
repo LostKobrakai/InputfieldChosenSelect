@@ -46,7 +46,15 @@ class InputfieldChosenSelectMultiple extends InputfieldSelectMultiple implements
 		$this->chosenOptions[$key] = $value; 
 	}
 
-	public function ___render() {
+	/**
+	 * Called before render()
+	 *
+	 * @param Inputfield $parent
+	 * @param bool $renderValueMode
+	 * @return bool
+	 *
+	 */
+	public function renderReady(Inputfield $parent = null, $renderValueMode = false) {
 		$class = $this->className(); 
 		$info = self::getModuleInfo();
 		$ver = $info['version'];
@@ -58,19 +66,25 @@ class InputfieldChosenSelectMultiple extends InputfieldSelectMultiple implements
 		if(in_array($this->adminTheme, $this->supportedAdminThemes)){
 			$this->config->styles->add($this->config->urls->$class . $this->adminTheme . ".css?v=$ver");
 		}
-		
+
 		if($this->placeholder) $this->setChosenOption('placeholder_text_multiple', $this->placeholder);
+		$this->config->js($this->id, $this->chosenOptions);
+
+		return parent::renderReady($parent, $renderValueMode);
+
+	}
+
+
+	public function ___render() {
 
 		$selectedOptions = $this->attr('value');
 
 		foreach($selectedOptions as $id) {
 			if(!isset($this->options[$id])) continue; 
 			$label = $this->options[$id]; 
-			unset($this->options[$id]); 	
+			unset($this->options[$id]);
 			$this->addOption($id, $label); 
 		}
-
-		$this->config->js($this->id, $this->chosenOptions);
 
 		return parent::___render();
 	}

@@ -108,26 +108,45 @@
 
 }(jQuery));
 
-$(document).ready(function() {
-	$(".InputfieldChosenSelectMultiple select[multiple=multiple]").each(function() {
-		var $t = $(this),
-        $addable = $t.closest(".InputfieldChosenSelectMultiple").find(".InputfieldPageAdd"); 
 
-		if(typeof config === 'undefined') {
-			var options = { sortable: true };
-		} else {
-			var options = config[$t.attr('id')]; 
-		}
+var initChosenMulti = function() {
+      var $t = $(this),
+          $addable = $t.closest(".InputfieldChosenSelectMultiple").find(".InputfieldPageAdd"); 
 
-    if($addable.length){
-      options["no_results_text"] = options["no_results_text_addable"];
-      $t.chosen(options).chosenSortable().chosenAddable();
+      var tid = $t.attr('id');
+      var oid = tid.split('_repeater')[0];
 
-      if(!$t.data('chosen')){
-        $addable.css("display", "block");
+      if(typeof config === 'undefined') {
+        var options = {sortable: true};
+      } else {
+        var options = config[oid]; 
       }
-    }else{
-      $t.chosen(options).chosenSortable();
-    }
-	}); 
-}); 
+
+      if($addable.length){
+        options["no_results_text"] = options["no_results_text_addable"];
+        $t.chosen(options).chosenSortable().chosenAddable();
+
+        if(!$t.data('chosen')){
+          $addable.css("display", "block");
+        }
+      }else{
+        $t.chosen(options).chosenSortable();
+      }
+
+};
+
+
+$(document).ready(function() {
+
+  $(".InputfieldChosenSelectMultiple select[multiple=multiple]").each(initChosenMulti);
+
+  $(document).on('reloaded opened repeateradd wiretabclick', '.InputfieldPage', function() {
+    $(this).find(".InputfieldChosenSelectMultiple select[multiple=multiple]").each(initChosenMulti);
+  });
+
+
+});
+
+
+
+
