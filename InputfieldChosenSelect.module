@@ -59,7 +59,15 @@ class InputfieldChosenSelect extends InputfieldSelect {
 		$this->chosenOptions[$key] = $value; 
 	}
 
-	public function ___render() {
+	/**
+	 * Called before render()
+	 *
+	 * @param Inputfield $parent
+	 * @param bool $renderValueMode
+	 * @return bool
+	 *
+	 */
+	public function renderReady(Inputfield $parent = null, $renderValueMode = false) {
 		$class = $this->className(); 
 		$info = self::getModuleInfo();
 		$ver = $info['version'];
@@ -77,7 +85,8 @@ class InputfieldChosenSelect extends InputfieldSelect {
 
 		$this->config->js($this->id, $this->chosenOptions);
 
-		return parent::___render();
+		return parent::renderReady($parent, $renderValueMode);
+
 	}
 
 	public function ___install() {
