@@ -28,7 +28,7 @@ class InputfieldChosenSelect extends InputfieldSelect {
 		return array(
 			'title' => __('Inputfield Chosen Select', __FILE__), // Module Title
 			'summary' => __('Inputfield for the ProcessWire FieldtypePage. Progressively enhanced single value select. IMPORTANT: Please note the change in the naming of the Inputfield', __FILE__), // Module Summary
-			'version' => 123, 
+			'version' => 124, 
 			);
 	}
 
@@ -82,7 +82,8 @@ class InputfieldChosenSelect extends InputfieldSelect {
 
 		if(!$this->required) $this->setChosenOption('allow_single_deselect', 'true');
 		if($this->placeholder) $this->setChosenOption('placeholder_text_single', $this->placeholder);
-
+		if($this->noresult) $this->setChosenOption('no_results_text', $this->noresult);
+		
 		$this->config->js($this->id, $this->chosenOptions);
 
 		return parent::renderReady($parent, $renderValueMode);
@@ -124,6 +125,13 @@ class InputfieldChosenSelect extends InputfieldSelect {
 		$f->label = $this->_('Placeholder Text');
 		$f->description = $this->_('Placeholder-text to be displayed in empty field.'); 
 		$inputfields->add($f);
+		
+		$f = wire('modules')->get('InputfieldText');
+	    	$f->attr('name', 'noresult');
+	    	$f->attr('value', $this->noresult);
+	    	$f->label = $this->_('No result');
+	    	$f->description = $this->_('Message to display if no result is found.');
+	    	$inputfields->add($f);
 
 		return $inputfields;
 	}
