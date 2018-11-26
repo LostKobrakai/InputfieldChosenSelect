@@ -16,3 +16,7 @@
 .InputfieldChosenSelectMultiple .InputfieldPageAdd{
   display: none;
 }
+
+.AdminThemeUikit .chosen-container:not(.chosen-container-active) {
+  position: initial;
+}
