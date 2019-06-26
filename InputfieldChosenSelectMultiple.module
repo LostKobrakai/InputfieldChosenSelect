@@ -21,7 +21,8 @@ class InputfieldChosenSelectMultiple extends InputfieldSelectMultiple implements
 	protected $chosenOptions = array();
 	protected $supportedAdminThemes = array(
 		"AdminThemeReno",
-		"AdminThemeDefault"
+		"AdminThemeDefault",
+		"AdminThemeUikit"
 	);
 
 	public static function getModuleInfo() {
